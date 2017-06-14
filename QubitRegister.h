@@ -5,20 +5,17 @@
 #ifndef QUANTUMCOMPUTING_QUANTUMREGISTER_H
 #define QUANTUMCOMPUTING_QUANTUMREGISTER_H
 
+#include "Qubit.h"
 #include <vector>
-#include <complex>
 
-class QuantumRegister {
+class QuantumRegister : public std::vector<Qubit> {
 
 private:
     int _numStates;
-    std::vector<std::complex<double>> _qubits;
 
 public:
     QuantumRegister(int numQubits);
-    //~QuantumRegister();
 
-    void PrintStates();
 };
 
 

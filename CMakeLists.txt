@@ -3,5 +3,5 @@ project(QuantumComputing__)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp QubitRegister.cpp QubitRegister.h)
+set(SOURCE_FILES main.cpp QubitRegister.cpp QubitRegister.h QubitManipulators.cpp QubitManipulators.h Qubit.cpp Qubit.h)
 add_executable(QuantumComputing__ ${SOURCE_FILES})
