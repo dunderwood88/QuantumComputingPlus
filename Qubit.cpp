@@ -18,6 +18,6 @@ void Qubit::initialise(std::complex<double> alpha, std::complex<double> beta) {
     _beta = beta;
 }
 
-void::collapse() {
+void Qubit::collapse() {
 
 }
