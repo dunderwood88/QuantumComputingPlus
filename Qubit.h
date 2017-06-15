@@ -6,6 +6,8 @@
 #define QUANTUMCOMPUTING_QUBIT_H
 
 #include <complex>
+#include <vector>
+#include <functional>
 
 class Qubit {
 
@@ -19,6 +21,7 @@ public:
     ~Qubit(){}
 
     void initialise(std::complex<double> alpha, std::complex<double> beta);
+    void manipulate(std::function<std::vector<std::complex<double>> (std::complex<double>&, std::complex<double>&)> manipulation);
     void collapse();
 };
 

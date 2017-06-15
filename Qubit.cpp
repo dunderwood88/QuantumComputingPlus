@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <vector>
 #include "Qubit.h"
 
 Qubit::Qubit() {
@@ -19,5 +20,19 @@ void Qubit::initialise(std::complex<double> alpha, std::complex<double> beta) {
 }
 
 void Qubit::collapse() {
+
+}
+
+void Qubit::manipulate(std::function<std::vector<std::complex<double>> (std::complex<double>&, std::complex<double>&)> manipulation) {
+
+    std::vector<std::complex<double>> newAmplitudes = manipulation(_alpha, _beta);
+
+
+    // check that |a|^2 + |b|^2 = 1
+    if (pow(newAmplitudes[0],2) + pow(newAmplitudes[0],2) == 1.0) {
+        _alpha = newAmplitudes[0];
+        _alpha = newAmplitudes[1];
+    }
+
 
 }
