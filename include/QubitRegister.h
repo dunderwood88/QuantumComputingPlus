@@ -8,10 +8,17 @@
 #include "Qubit.h"
 #include <vector>
 
-class QuantumRegister : public std::vector<Qubit> {
+class QubitRegister {
+
+private:
+    std::vector<Qubit> _qubits;
 
 public:
-    QuantumRegister(int numQubits);
+    QubitRegister(int numQubits);
+
+    std::string measure();
+    std::vector<Qubit>& list();
+
 };
 
 

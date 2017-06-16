@@ -7,11 +7,12 @@
 
 #include <vector>
 #include "Qubit.h"
+#include "QubitRegister.h"
 
 namespace qubitManipulators {
 
     // MEASUREMENT
-    void measure(Qubit& qubit);
+    //void measure(Qubit& qubit);
 
 
     // QUANTUM GATES
@@ -19,6 +20,7 @@ namespace qubitManipulators {
     //Hadamard
     void hadamardGate(Qubit& qubit);
     void hadamardGate(std::vector<Qubit>& qubits);
+    void hadamardGate(QubitRegister& qubits);
 
     //Pauli
     void pauliX(Qubit& qubit);
