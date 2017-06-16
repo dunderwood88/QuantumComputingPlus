@@ -76,4 +76,65 @@ namespace qubitManipulators {
             hadamardGate(q);
         }
     }
+
+
+    void pauliX(Qubit& qubit) {
+
+        std::cout << "Applying pauli-X gate." << std::endl;
+
+        qubit.manipulate(
+                [](std::complex<double>& alpha, std::complex<double>& beta) {
+
+                    std::vector<std::complex<double>> newAmplitudes;
+
+                    newAmplitudes.push_back(beta);
+                    newAmplitudes.push_back(alpha);
+
+                    return newAmplitudes;
+                }
+        );
+
+    }
+
+
+    void pauliY(Qubit& qubit) {
+
+        std::cout << "Applying pauli-Y gate." << std::endl;
+
+        qubit.manipulate(
+                [](std::complex<double>& alpha, std::complex<double>& beta) {
+
+                    std::vector<std::complex<double>> newAmplitudes;
+
+                    newAmplitudes.push_back(std::complex<double>(0, -1)*beta);
+                    newAmplitudes.push_back(std::complex<double>(0, 1)*alpha);
+
+                    return newAmplitudes;
+                }
+        );
+
+    }
+
+
+    void pauliZ(Qubit& qubit) {
+
+        std::cout << "Applying pauli-Z gate." << std::endl;
+
+        qubit.manipulate(
+                [](std::complex<double>& alpha, std::complex<double>& beta) {
+
+                    std::vector<std::complex<double>> newAmplitudes;
+
+                    newAmplitudes.push_back(alpha);
+                    newAmplitudes.push_back(-beta);
+
+                    return newAmplitudes;
+                }
+        );
+
+    }
+
+    void cNot(Qubit& control, Qubit& target) {
+
+    }
 }

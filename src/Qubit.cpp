@@ -10,7 +10,7 @@ Qubit::Qubit() {
 
     // By default initialise in the 0 state
     initialise(1.0, 0.0);
-    std::cout << "Qubit initialised in |0> state." << std::endl;
+    std::cout << "Qubit initialised in computational |0> state." << std::endl;
 }
 
 void Qubit::initialise(std::complex<double> alpha, std::complex<double> beta) {
@@ -19,9 +19,6 @@ void Qubit::initialise(std::complex<double> alpha, std::complex<double> beta) {
     _beta = beta;
 }
 
-void Qubit::collapse() {
-
-}
 
 void Qubit::manipulate(std::function<std::vector<std::complex<double>> (std::complex<double>&, std::complex<double>&)> manipulation) {
 
