@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "QubitRegister.h"
+#include "../include/QubitRegister.h"
 
 QuantumRegister::QuantumRegister(int numQubits) {
 

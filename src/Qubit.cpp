@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <vector>
-#include "Qubit.h"
+#include "../include/Qubit.h"
 
 Qubit::Qubit() {
 
@@ -27,12 +27,9 @@ void Qubit::manipulate(std::function<std::vector<std::complex<double>> (std::com
 
     std::vector<std::complex<double>> newAmplitudes = manipulation(_alpha, _beta);
 
-
     // check that |a|^2 + |b|^2 = 1
-    if (pow(newAmplitudes[0],2) + pow(newAmplitudes[0],2) == 1.0) {
+    if (1 - (pow(abs(newAmplitudes[0]),2) + pow(abs(newAmplitudes[1]),2)) < 1E-3) {
         _alpha = newAmplitudes[0];
-        _alpha = newAmplitudes[1];
+        _beta = newAmplitudes[1];
     }
-
-
 }

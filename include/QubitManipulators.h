@@ -11,7 +11,7 @@
 namespace qubitManipulators {
 
     // MEASUREMENT
-    void measure();
+    void measure(Qubit& qubit);
 
 
     // QUANTUM GATES
