@@ -5,19 +5,25 @@
 #ifndef QUANTUMCOMPUTING_QUBITREGISTER_H
 #define QUANTUMCOMPUTING_QUBITREGISTER_H
 
-#include "Qubit.h"
 #include <vector>
+#include <complex.h>
 
 class QubitRegister {
 
 private:
-    std::vector<Qubit> _qubits;
+    int _numQubits;
+    std::vector<std::complex<double>> _qubitAmplitudes;
+
 
 public:
+    QubitRegister();
     QubitRegister(int numQubits);
 
+    void manipulate(std::function<std::vector<std::complex<double>> (std::vector<std::complex<double>>&)> manipulation);
+    void manipulate(int registerPosition);
+
+
     std::string measure();
-    std::vector<Qubit>& list();
 
 };
 
