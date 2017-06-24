@@ -20,12 +20,39 @@ namespace qubitManipulators {
      */
     void hadamardGate(QubitRegister &qubits, int qubitPosition) {
 
+        if (qubitPosition > qubits.size()) {
+
+            std::cout << "Invalid register position" << std::endl;
+            return;
+        }
+
         qubits.manipulate(
-                [](std::vector<std::complex<double>> &amplitudes) {
+                [&qubitPosition](std::vector<std::complex<double>> &amplitudes) {
 
                     std::vector<std::complex<double>> newAmplitudes;
+                    bool minus = false;
 
+                    for (int i = 0; i < amplitudes.size(); i++) {
 
+                        std::complex<double> amp;
+
+                        if (i != 0 && (i % qubitPosition == 0))
+                            minus = !minus;
+
+                        if (!minus) {
+
+                            amp = (amplitudes[i] + amplitudes[i + qubitPosition])/sqrt(2);
+
+                        } else {
+
+                            amp = (amplitudes[i - qubitPosition] - amplitudes[i])/sqrt(2);
+                        }
+
+                        newAmplitudes.push_back(amp);
+
+                        std::cout << minus << std::endl;
+                        std::cout << amp << std::endl;
+                    }
 
                     return newAmplitudes;
 

@@ -82,3 +82,7 @@ std::string QubitRegister::measure() {
 
     return std::string("");
 }
+
+int QubitRegister::size() {
+    return _numQubits;
+}
