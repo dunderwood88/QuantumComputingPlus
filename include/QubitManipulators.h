@@ -19,7 +19,7 @@ namespace qubitManipulators {
 
     //Hadamard
     void hadamardGate(Qubit& qubit);
-    void hadamardGate(QubitRegister& qubits, int registerPosition);
+    void hadamardGate(QubitRegister& qubits, unsigned int registerPosition);
 
     //Pauli
     void pauliX(Qubit& qubit);

@@ -9,7 +9,11 @@
 namespace qubitManipulators {
 
 
-    // QUANTUM GATES
+    /** QUANTUM GATES
+     * Manipulations accept a qubit system (single or register) object and pass into it a lambda
+     * function which performs an internal manipulation, which avoids exposing the internal
+     * information of the qubit
+     */
 
     /**
      * Accepts a qubit register object reference and performs a Hadamard
@@ -18,11 +22,12 @@ namespace qubitManipulators {
      * @param qubits the qubit vector
      * @param qubitPosition the register position of the qubit to be transformed
      */
-    void hadamardGate(QubitRegister &qubits, int qubitPosition) {
+    void hadamardGate(QubitRegister &qubits, unsigned int qubitPosition) {
 
-        if (qubitPosition > qubits.size()) {
+        if (qubitPosition < 1 || qubitPosition > qubits.size()) {
 
-            std::cout << "Invalid register position" << std::endl;
+            std::cout << "Invalid position (" << qubitPosition
+                      << ") for register of size " << qubits.size() << std::endl;
             return;
         }
 
@@ -31,31 +36,37 @@ namespace qubitManipulators {
 
                     std::vector<std::complex<double>> newAmplitudes;
                     bool minus = false;
+                    unsigned int count = 0;
+                    unsigned int diffCoeff;
 
-                    for (int i = 0; i < amplitudes.size(); i++) {
+                    std::cout << "Applying Hadamard transformation on qubit "
+                              << qubitPosition << std::endl;
+
+                    for (unsigned int i = 0; i < amplitudes.size(); i++) {
 
                         std::complex<double> amp;
 
-                        if (i != 0 && (i % qubitPosition == 0))
+                        diffCoeff = (unsigned int)pow(2,qubitPosition)/2;
+
+                        if (count == diffCoeff) {
                             minus = !minus;
+                            count = 0;
+                        }
 
                         if (!minus) {
 
-                            amp = (amplitudes[i] + amplitudes[i + qubitPosition])/sqrt(2);
+                            amp = (amplitudes.at(i) + amplitudes.at(i + diffCoeff))/sqrt(2);
 
                         } else {
 
-                            amp = (amplitudes[i - qubitPosition] - amplitudes[i])/sqrt(2);
+                            amp = (amplitudes.at(i - diffCoeff) - amplitudes.at(i))/sqrt(2);
                         }
 
                         newAmplitudes.push_back(amp);
-
-                        std::cout << minus << std::endl;
-                        std::cout << amp << std::endl;
+                        count++;
                     }
 
                     return newAmplitudes;
-
                 }
 
         );

@@ -21,7 +21,7 @@ QubitRegister::QubitRegister() {
  * @param numQubits the size of the register/the number of qubits
  * to initialise
  */
-QubitRegister::QubitRegister(int numQubits) {
+QubitRegister::QubitRegister(unsigned int numQubits) {
 
     _numQubits = numQubits;
     std::string state = "|";
@@ -30,10 +30,10 @@ QubitRegister::QubitRegister(int numQubits) {
 
         // initialise in the |0^n> state
         if (i == 0) {
-            _qubitAmplitudes.push_back(1.0);
+            _qubitAmplitudes.push_back(std::complex<double>(1.0, 0.0));
 
         } else {
-            _qubitAmplitudes.push_back(0.0);
+            _qubitAmplitudes.push_back(std::complex<double>(0.0, 0.0));
         }
 
         if (i < _numQubits)
@@ -47,7 +47,10 @@ QubitRegister::QubitRegister(int numQubits) {
 }
 
 /**
- * Accepts a lambda function which performs a manipulation on the qubit register state
+ * Accepts a lambda function which performs a manipulation on the qubit register state.
+ * Manipulations accept a qubit system (single or register) object and pass into it a lambda
+ * function which performs an internal manipulation, which avoids exposing the internal
+ * information of the qubit
  *
  * @param manipulation the lambda function, which accepts a complex number vector
  * reference and returns a new one with manipulated amplitudes

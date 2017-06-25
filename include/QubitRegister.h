@@ -17,7 +17,7 @@ private:
 
 public:
     QubitRegister();
-    QubitRegister(int numQubits);
+    QubitRegister(unsigned int numQubits);
 
     int size();
 
