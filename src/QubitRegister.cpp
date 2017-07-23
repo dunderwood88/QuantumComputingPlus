@@ -83,9 +83,19 @@ void QubitRegister::manipulate(
  */
 std::string QubitRegister::measure() {
 
-    return std::string("");
+    for (std::complex<double> coeff: _qubitAmplitudes) {
+        std::cout << coeff << std::endl;
+    }
+
+    return "";
 }
 
+
+/**
+ * Returns size of the qubit register (number of qubits)
+ *
+ * @return length of qubit register
+ */
 int QubitRegister::size() {
     return _numQubits;
 }

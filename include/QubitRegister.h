@@ -22,8 +22,6 @@ public:
     int size();
 
     void manipulate(std::function<std::vector<std::complex<double>> (std::vector<std::complex<double>>&)> manipulation);
-    void manipulate(int registerPosition);
-
 
     std::string measure();
 

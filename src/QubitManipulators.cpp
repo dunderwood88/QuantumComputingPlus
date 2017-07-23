@@ -11,7 +11,7 @@ namespace qubitManipulators {
 
     /** QUANTUM GATES
      * Manipulations accept a qubit system (single or register) object and pass into it a lambda
-     * function which performs an internal manipulation, which avoids exposing the internal
+     * function that performs an internal manipulation, which avoids exposing the internal
      * information of the qubit
      */
 
@@ -73,6 +73,20 @@ namespace qubitManipulators {
     }
 
     /**
+     * Accepts a qubit register object reference and performs a Hadamard
+     * transform on all qubits
+     *
+     * @param qubits
+     */
+    void hadamardGate(QubitRegister &qubits) {
+
+        for (unsigned int i = 1; i <= qubits.size(); i++) {
+            hadamardGate(qubits, i);
+        }
+
+    }
+
+    /**
      * Accepts a qubit object reference and performs a Hadamard
      * transform on it
      *
@@ -82,5 +96,40 @@ namespace qubitManipulators {
 
         hadamardGate(qubit, 1);
     }
+
+
+
+    void cNot(QubitRegister &qubits) {
+
+        /*qubits.manipulate(
+                [](std::vector<std::complex<double>> &amplitudes) {
+
+                    std::vector<std::complex<double>> newAmplitudes;
+
+                    std::cout << "Applying CNOT transformation" << std::endl;
+
+                    for (unsigned int i = 0; i < amplitudes.size(); i++) {
+
+                        if (i == amplitudes.size() - 2) {
+
+                            newAmplitudes.push_back(amplitudes.at(i + 1));
+
+                        } else if (i == amplitudes.size() - 1) {
+
+                            newAmplitudes.push_back(amplitudes.at(i - 1));
+
+                        } else {
+                            newAmplitudes.push_back(amplitudes.at(i));
+                        }
+
+                    }
+
+                    return newAmplitudes;
+                }
+
+        );*/
+
+    }
+
 
 }
