@@ -20,3 +20,37 @@ double ::util::random() {
     std::uniform_real_distribution<> dis(0,1);
     return dis(gen);
 }
+/**
+ * Discrete Fourier Transform: takes a vector of complex numbers and
+ * returns the discrete fourier transform of that vector
+ *
+ * @return DFT of input vector
+ */
+std::vector<std::complex<double>> util::discreteFourierTrans(std::vector<std::complex<double>>& inputVector) {
+
+    unsigned long n = inputVector.size();
+    std::vector<std::complex<double>> outputVector;
+
+    // for each element in the transformed vector
+    for (unsigned long i = 0; i < n; i++) {
+
+        std::complex<double> transform;
+
+        // for each element in the input vector
+        for (unsigned long j = 0; j < n; j++) {
+
+            double angle = (2.0 * M_PI * i * j)/n;
+
+            //std::complex<double> complexExponent(cos(angle), -sin(angle));
+            //transform += inputVector.at(j) * complexExponent;
+
+            transform += inputVector.at(j) * std::polar(1.0, -angle);
+
+        }
+
+        outputVector.push_back(transform);
+
+    }
+
+    return outputVector;
+}

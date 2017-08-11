@@ -6,9 +6,16 @@
 #define QUANTUMCOMPUTING_UTIL_H
 
 
+#include <complex.h>
+
 namespace util {
 
+    // random number generator
     double random();
+
+    // discrete Fourier transform
+    std::vector<std::complex<double>> discreteFourierTrans(std::vector<std::complex<double>>& inputVector);
+
 
 };
 
