@@ -7,6 +7,7 @@
 
 
 #include <complex.h>
+#include <vector>
 
 namespace util {
 

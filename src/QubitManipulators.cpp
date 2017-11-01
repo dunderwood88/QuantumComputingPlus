@@ -3,7 +3,6 @@
 //
 
 #include <iostream>
-#include <random>
 #include "../include/QubitManipulators.h"
 
 namespace qubitManipulators {
@@ -131,5 +130,185 @@ namespace qubitManipulators {
 
     }
 
+
+    void pauliX(QubitRegister &qubits, unsigned int qubitPosition) {
+
+        if (qubitPosition < 1 || qubitPosition > qubits.size()) {
+
+            std::cout << "Invalid position (" << qubitPosition
+                      << ") for register of size " << qubits.size() << std::endl;
+            return;
+        }
+
+        qubits.manipulate(
+                [&qubitPosition](std::vector<std::complex<double>> &amplitudes) {
+
+                    std::vector<std::complex<double>> newAmplitudes;
+                    bool minus = false;
+                    unsigned int count = 0;
+                    unsigned int diffCoeff;
+
+                    std::cout << "Applying pauli-X transformation on qubit "
+                              << qubitPosition << std::endl;
+
+                    for (unsigned int i = 0; i < amplitudes.size(); i++) {
+
+                        std::complex<double> amp;
+
+                        diffCoeff = (unsigned int)pow(2,qubitPosition)/2;
+
+                        if (count == diffCoeff) {
+                            minus = !minus;
+                            count = 0;
+                        }
+
+                        if (!minus) {
+
+                            amp = amplitudes.at(i + diffCoeff);
+
+                        } else {
+
+                            amp = amplitudes.at(i - diffCoeff);
+                        }
+
+                        newAmplitudes.push_back(amp);
+                        count++;
+                    }
+
+                    return newAmplitudes;
+                }
+        );
+
+    }
+
+    void pauliX(Qubit &qubit) {
+
+        pauliX(qubit, 1);
+    }
+
+
+
+    void pauliY(QubitRegister &qubits, unsigned int qubitPosition) {
+
+        if (qubitPosition < 1 || qubitPosition > qubits.size()) {
+
+            std::cout << "Invalid position (" << qubitPosition
+                      << ") for register of size " << qubits.size() << std::endl;
+            return;
+        }
+
+        qubits.manipulate(
+                [&qubitPosition](std::vector<std::complex<double>> &amplitudes) {
+
+                    std::vector<std::complex<double>> newAmplitudes;
+                    bool minus = false;
+                    unsigned int count = 0;
+                    unsigned int diffCoeff;
+
+
+                    std::cout << "Applying pauli-Y transformation on qubit "
+                              << qubitPosition << std::endl;
+
+                    for (unsigned int i = 0; i < amplitudes.size(); i++) {
+
+                        std::complex<double> amp;
+
+                        diffCoeff = (unsigned int)pow(2,qubitPosition)/2;
+
+                        if (count == diffCoeff) {
+                            minus = !minus;
+                            count = 0;
+                        }
+
+                        if (!minus) {
+
+                            std::complex<double> im(0.0, -1.0);
+                            amp = im * amplitudes.at(i + diffCoeff);
+
+                        } else {
+
+                            if (amplitudes.at(i) != 0.0) {
+
+                                std::complex<double> im(0.0, 1.0);
+                                amp = im * amplitudes.at(i - diffCoeff);
+                            }
+                        }
+
+                        newAmplitudes.push_back(amp);
+                        count++;
+                    }
+
+                    return newAmplitudes;
+                }
+        );
+
+    }
+
+    void pauliY(Qubit &qubit) {
+
+        pauliY(qubit, 1);
+    }
+
+
+
+    void pauliZ(QubitRegister &qubits, unsigned int qubitPosition) {
+
+        if (qubitPosition < 1 || qubitPosition > qubits.size()) {
+
+            std::cout << "Invalid position (" << qubitPosition
+                      << ") for register of size " << qubits.size() << std::endl;
+            return;
+        }
+
+        qubits.manipulate(
+                [&qubitPosition](std::vector<std::complex<double>> &amplitudes) {
+
+                    std::vector<std::complex<double>> newAmplitudes;
+                    bool minus = false;
+                    unsigned int count = 0;
+                    unsigned int diffCoeff;
+
+                    for (unsigned int i = 0; i < amplitudes.size(); i++) {
+                        std::cout << amplitudes.at(i) << std::endl;
+                    }
+
+                    std::cout << "Applying pauli-Y transformation on qubit "
+                              << qubitPosition << std::endl;
+
+                    for (unsigned int i = 0; i < amplitudes.size(); i++) {
+
+                        std::complex<double> amp;
+
+                        diffCoeff = (unsigned int)pow(2,qubitPosition)/2;
+
+                        if (count == diffCoeff) {
+                            minus = !minus;
+                            count = 0;
+                        }
+
+                        if (!minus) {
+
+                            amp = amplitudes.at(i);
+
+                        } else {
+
+                            if (amplitudes.at(i) != 0.0)
+                                amp = -amplitudes.at(i);
+                        }
+
+                        newAmplitudes.push_back(amp);
+                        count++;
+                    }
+
+                    return newAmplitudes;
+                }
+        );
+
+    }
+
+    void pauliZ(Qubit &qubit) {
+
+        pauliZ(qubit, 1);
+    }
 
 }

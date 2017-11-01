@@ -23,6 +23,22 @@ namespace QuantumAlgorithms {
     void GroverSearch(QubitRegister &qReg,
                       std::function<std::vector<std::complex<double>>(std::vector<std::complex<double>> &)> oracleFunction);
 
+
+
+    /**
+     * Deutsch-Jozsa algorithm for determining whether a function is constant or balanced.
+     * It accepts input |x>|y>, where |x> can be either be a single qubit or a tensor product
+     * of qubits. If the function is constant, then |x> will be measured as all zeroes with a
+     * probabilty of unity. If it is balanced, then the opposite is true.
+     *
+     * @param qReg the qubit register, consisting of n-1 input qubits, and 1 ancillary qubit
+     * @param function a function that promises to be either constant or balanced, where it takes the
+     * qubit register |x>|y> and outputs |x>| (y + f(x))%2 >
+     */
+    void DeutschJozsa(QubitRegister &qReg,
+                      std::function<std::vector<std::complex<double>>(std::vector<std::complex<double>> &)> function);
+
+
 };
 
 

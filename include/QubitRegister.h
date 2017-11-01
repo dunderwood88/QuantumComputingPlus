@@ -11,19 +11,27 @@
 class QubitRegister {
 
 private:
-    int _numQubits;
+    unsigned int _numQubits;
     std::vector<std::complex<double>> _qubitAmplitudes;
+
+    // wavefunction collapse
+    unsigned int randomState();
+    void collapse(unsigned int state);
+    void collapse(unsigned int state, unsigned int measuredQubit);
 
 
 public:
     QubitRegister();
     QubitRegister(unsigned int numQubits);
+    unsigned int size();
 
-    int size();
-
+    // manipulation
     void manipulate(std::function<std::vector<std::complex<double>> (std::vector<std::complex<double>>&)> manipulation);
 
-    std::string measure();
+    // measurement
+    unsigned int qubitMeasure(unsigned int qubitPosition);
+    unsigned int intRegisterMeasure();
+    std::string strRegisterMeasure();
 
 };
 

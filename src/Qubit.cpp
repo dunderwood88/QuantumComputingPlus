@@ -8,7 +8,7 @@
 /**
  * Constructor
  */
-Qubit::Qubit() : QubitRegister() {
+Qubit::Qubit() : QubitRegister(1) {
 
 }
 

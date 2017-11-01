@@ -18,18 +18,21 @@ namespace qubitManipulators {
     // QUANTUM GATES
 
     //Hadamard
-    void hadamardGate(Qubit& qubit);
-    void hadamardGate(QubitRegister& qubits);
-    void hadamardGate(QubitRegister& qubits, unsigned int registerPosition);
+    void hadamardGate(Qubit &qubit);
+    void hadamardGate(QubitRegister &qubits);
+    void hadamardGate(QubitRegister &qubits, unsigned int qubitPosition);
 
     //Pauli
-    void pauliX(Qubit& qubit);
-    void pauliY(Qubit& qubit);
-    void pauliZ(Qubit& qubit);
+    void pauliX(Qubit &qubit);
+    void pauliX(QubitRegister &qubits, unsigned int qubitPosition);
+    void pauliY(Qubit &qubit);
+    void pauliY(QubitRegister &qubits, unsigned int qubitPosition);
+    void pauliZ(Qubit &qubit);
+    void pauliZ(QubitRegister &qubits, unsigned int qubitPosition);
 
     //CNOT
     //void cNot(Qubit& control, Qubit& target);
-    void cNot(QubitRegister& qubits);
+    void cNot(QubitRegister &qubits);
 
 
 }
